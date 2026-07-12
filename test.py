@@ -1,0 +1,10 @@
+import json
+
+from sdk.basic.ifind_api import IFind_API
+
+
+refresh_token = 'eyJzaWduX3RpbWUiOiIyMDI2LTA3LTEyIDExOjMyOjUxIn0=.eyJ1aWQiOiI4ODQ3MTA4NTYiLCJ1c2VyIjp7InJlZnJlc2hUb2tlbkV4cGlyZWRUaW1lIjoiMjAyNi0wNy0yNSAxMToxNzozOSIsInVzZXJJZCI6Ijg4NDcxMDg1NiJ9fQ==.90453CFFA4ED8B5C3C9A1E300FEEE968F57B744434B2740282F0DB451D39595D'
+
+iFind_api = IFind_API(refresh_token=refresh_token)
+response = iFind_api.access_token
+print(response)
