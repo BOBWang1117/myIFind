@@ -1,9 +1,15 @@
-import requests
+"""
+Provide an interface encapsulation for interacting with the IFind data service.
+"""
 import json
-
 from datetime import datetime
+import requests
 
-class IFind_API:
+
+class IFindAPI:
+    """
+    Encapsulates GET/POST request methods for the IFind data service.
+    """
     def __init__(self, refresh_token):
         self.base_url = 'https://quantapi.51ifind.com'
         self.refresh_token = refresh_token
@@ -24,20 +30,24 @@ class IFind_API:
                     data = json.loads(response.content)
                     self.access_token = data['data']['access_token']
         else:
-            raise Exception("Refresh token expired or invalid")
+            raise RuntimeError("Refresh token expired or invalid")
 
     def get_api_v1_get_access_token(self):
-        path = '/api/v1/get_access_token'
-        url = "{}{}".format(self.base_url, path)
+        """
+        GET /api/v1/get_access_token
+        """
+        url = "{self.base_url}/api/v1/get_access_token"
 
         headers = {"Content-Type": "application/json", "refresh_token": self.refresh_token}
-        response = requests.get(url=url, headers=headers)
+        response = requests.get(url=url, headers=headers, timeout=10)
         return response
-    
+
     def post_api_v1_update_access_token(self):
-        path = '/api/v1/update_access_token'
-        url = "{}{}".format(self.base_url, path)
+        """
+        POST /api/v1/update_access_token
+        """
+        url = f"{self.base_url}/api/v1/update_access_token"
 
         headers = {"Content-Type": "application/json", "refresh_token": self.refresh_token}
-        response = requests.post(url=url, headers=headers)
-        return responsea
+        response = requests.post(url=url, headers=headers, timeout=10)
+        return response
