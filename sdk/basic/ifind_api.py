@@ -37,8 +37,8 @@ class IFindAPI:
         GET /api/v1/get_access_token
         """
         url = f"{self.base_url}/api/v1/get_access_token"
-
         headers = {"Content-Type": "application/json", "refresh_token": self.refresh_token}
+
         response = requests.get(url=url, headers=headers, timeout=10)
         return response
 
@@ -47,7 +47,25 @@ class IFindAPI:
         POST /api/v1/update_access_token
         """
         url = f"{self.base_url}/api/v1/update_access_token"
-
         headers = {"Content-Type": "application/json", "refresh_token": self.refresh_token}
+
         response = requests.post(url=url, headers=headers, timeout=10)
+        return response
+
+    def get_api_v1_basic_data_service(self, codes):
+        """
+        GET /api/v1/basic_data_service
+        """
+        url = f"{self.base_url}/api/v1/basic_data_service"
+        headers = {"Content-Type": "application/json", "access_token": self.access_token}
+        request_body = {
+            "codes": codes,
+            "indipara": [
+                {
+                    "indicator": "ths_fund_inner_short_name_fund"
+                }
+            ]
+        }
+
+        response = requests.post(url=url, headers=headers, data=json.dumps(request_body), timeout=10)
         return response
