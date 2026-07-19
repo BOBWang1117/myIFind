@@ -36,7 +36,7 @@ class IFindAPI:
         """
         GET /api/v1/get_access_token
         """
-        url = "{self.base_url}/api/v1/get_access_token"
+        url = f"{self.base_url}/api/v1/get_access_token"
 
         headers = {"Content-Type": "application/json", "refresh_token": self.refresh_token}
         response = requests.get(url=url, headers=headers, timeout=10)
