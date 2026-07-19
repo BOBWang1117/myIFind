@@ -1,0 +1,5 @@
+[MESSAGES CONTROL]
+ignore=config.ini
+
+[FORMAT]
+max-line-length=120
